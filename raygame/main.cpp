@@ -55,6 +55,7 @@ int main()
     char vecAtext[TEXT_BUFFER_SIZE];
     char vecBtext[TEXT_BUFFER_SIZE];
     char dotText[TEXT_BUFFER_SIZE];
+    char acosText[TEXT_BUFFER_SIZE];
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
@@ -63,6 +64,12 @@ int main()
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
+
+        if(IsKeyPressed('R'))
+        {
+            vecA = {0, 1};
+            vecB = {1, 0};
+        }
 
         float aAxis = IsKeyDown('Q') ? -1.0f : 0.0f + IsKeyDown('E') ? 1.0f : 0.0f;
         float bAxis = IsKeyDown('A') ? -1.0f : 0.0f + IsKeyDown('D') ? 1.0f : 0.0f;
@@ -80,18 +87,19 @@ int main()
 
         ClearBackground(RAYWHITE);
 
-        DrawArrowEx(origin, Vector2Add(origin, Vector2Scale(vecA, arrowLength)), arrowThick, RED);
         DrawArrowEx(origin, Vector2Add(origin, Vector2Scale(vecB, arrowLength)), arrowThick, BLUE);
+        DrawArrowEx(origin, Vector2Add(origin, Vector2Scale(Vector2Negate(vecB), arrowLength)), arrowThick, LIGHTGRAY);
+        DrawArrowEx(origin, Vector2Add(origin, Vector2Scale(vecA, arrowLength)), arrowThick, RED);
 
         sprintf_s(vecAtext, TEXT_BUFFER_SIZE, "%f , %f", vecA.x, vecA.y);
         sprintf_s(vecBtext, TEXT_BUFFER_SIZE, "%f , %f", vecB.x, vecB.y);
         sprintf_s(dotText, TEXT_BUFFER_SIZE, "%f", dot);
+        sprintf_s(acosText, TEXT_BUFFER_SIZE, "%f", acosf(dot) * RAD2DEG);
 
         DrawText(vecAtext, 10, 10, 20, BLUE);
         DrawText(vecBtext, 10, 40, 20, RED);
-        DrawText(dotText, 10, 70, 20, GREEN);
-
-        
+        DrawText(dotText, 10, 70, 20, DARKGREEN);
+        DrawText(acosText, 10, 100, 20, DARKGREEN);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
