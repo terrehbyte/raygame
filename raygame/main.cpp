@@ -96,8 +96,8 @@ int main()
         sprintf_s(dotText, TEXT_BUFFER_SIZE, "%f", dot);
         sprintf_s(acosText, TEXT_BUFFER_SIZE, "%f", acosf(dot) * RAD2DEG);
 
-        DrawText(vecAtext, 10, 10, 20, BLUE);
-        DrawText(vecBtext, 10, 40, 20, RED);
+        DrawText(vecAtext, 10, 10, 20, RED);
+        DrawText(vecBtext, 10, 40, 20, BLUE);
         DrawText(dotText, 10, 70, 20, DARKGREEN);
         DrawText(acosText, 10, 100, 20, DARKGREEN);
 
