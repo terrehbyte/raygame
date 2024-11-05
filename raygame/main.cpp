@@ -9,22 +9,23 @@
 *
 ********************************************************************************************/
 
-#include "raylib.hpp"
+#include "raylib-cpp.hpp"
 
 int main()
 {
 	// Initialization
 	//--------------------------------------------------------------------------------------
-	int ScreenWidth = 800;
-	int ScreenHeight = 450;
+	const int ScreenWidth = 800;
+	const int ScreenHeight = 450;
 
-	InitWindow(ScreenWidth, ScreenHeight, "raylib [core] example - basic window");
-
-	SetTargetFPS(60);
+	raylib::Window GameWindow(ScreenWidth, ScreenHeight, "raylib [core] example - basic window");
+	
+	GameWindow.SetTargetFPS(60);
+	
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop
-	while (!WindowShouldClose())    // Detect window close button or ESC key
+	while (!GameWindow.ShouldClose())    // Detect window close button or ESC key
 	{
 		// Update
 		//----------------------------------------------------------------------------------
@@ -33,19 +34,19 @@ int main()
 
 		// Draw
 		//----------------------------------------------------------------------------------
-		BeginDrawing();
+		GameWindow.BeginDrawing();
 
-		ClearBackground(RAYWHITE);
+		GameWindow.ClearBackground(RAYWHITE);
 
-		DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+		raylib::DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
 
-		EndDrawing();
+		GameWindow.EndDrawing();
 		//----------------------------------------------------------------------------------
 	}
 
 	// De-Initialization
 	//--------------------------------------------------------------------------------------   
-	CloseWindow();        // Close window and OpenGL context
+	GameWindow.Close();        // Close window and OpenGL context
 	//--------------------------------------------------------------------------------------
 
 	return 0;
